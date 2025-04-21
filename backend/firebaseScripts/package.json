@@ -1,0 +1,19 @@
+{
+  "name": "firebasescripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "script": "node script.cjs"
+  },
+  "keywords": [],
+  "author": "scorpLingua",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "firebase": "^11.6.0",
+    "firebase-admin": "^13.2.0"
+  }
+}

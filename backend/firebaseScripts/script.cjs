@@ -1,4 +1,10 @@
 const clases = require('./clases.json');
+const ejSaludos = require('./ejercicios/Saludos.json');
+const pronPer = require('./ejercicios/PronombresPersonales.json');
+const ejABC = require('./ejercicios/ABC.json');
+const verbToBe = require('./ejercicios/verbToBe.json');
+const artDefinidos = require('./ejercicios/artDefinidos.json');
+
 const { initializeApp } = require('firebase/app');
 const { getFirestore, collection, doc, setDoc } = require('firebase/firestore');
 const dotenv = require('dotenv');
@@ -34,4 +40,20 @@ async function subirClases() {
   }
 }
 
-subirClases();
+//subirClases();
+
+/*            Funcion para subir los ejercicios que estan dentro de los JSON               */
+async function subirEjercicios(json, documento){
+  try {
+    for (let i = 0; i < json.length; i++){
+      const ejercicio = json[i];
+      const id = `${documento}-${i}`;
+      const docRef = doc(db, `Ejercicios${documento}`, id);
+      await setDoc(docRef, ejercicio);
+      console.log(`Ejercicio ${documento} guardado con ID personalizado: ${id}`);
+    }
+  } catch (error) {
+    console.log("Error al subir")
+  }
+}
+subirEjercicios(artDefinidos, "artDefinidos");

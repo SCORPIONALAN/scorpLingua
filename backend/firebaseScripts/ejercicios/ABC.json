@@ -1,0 +1,108 @@
+[
+    {
+        "tipo": "voz",
+        "texto": "Escucha el audio y repite la pronunciación de las letras: A, B, C.",
+        "eVideo": "https://example.com/audio/abc.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Excelente pronunciación!",
+          "incorrecto": "Escucha nuevamente y repite con más claridad cada letra."
+        },
+        "respuestaCorrecta": "A B C"
+    },
+    {
+        "tipo": "voz",
+        "texto": "Escucha el audio y repite la pronunciación de las letras: D, E, F.",
+        "eVideo": "https://example.com/audio/abc.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Excelente pronunciación!",
+          "incorrecto": "Escucha nuevamente y repite con más claridad cada letra."
+        },
+        "respuestaCorrecta": "D E F"
+    },
+    {
+        "tipo": "voz",
+        "texto": "Escucha el audio y repite la pronunciación de las letras: G, H, I.",
+        "eVideo": "https://example.com/audio/abc.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Excelente pronunciación!",
+          "incorrecto": "Escucha nuevamente y repite con más claridad cada letra."
+        },
+        "respuestaCorrecta": "G H I"
+    },
+
+    {
+        "tipo": "multiple_choice",
+        "texto": "¿Cuál de estas letras se pronuncia como 'ei'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! La letra A se pronuncia 'ei' en inglés.",
+          "incorrecto": "No es correcto. Revisa cómo se pronuncian las letras."
+        },
+        "respuestaCorrecta": "A",
+        "opciones": ["E", "I", "A", "U"]
+    },
+    {
+        "tipo": "multiple_choice_imagen",
+        "texto": "¿Cuál imagen representa una palabra que empieza con la letra 'B'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Muy bien! Ball empieza con B.",
+          "incorrecto": "Revisa la palabra que corresponde con la letra B."
+        },
+        "respuestaCorrecta": "pelota",
+        "opciones": [
+          {
+            "imagen": "https://example.com/img/apple.png",
+            "texto": "Apple",
+            "valor": "manzana"
+          },
+          {
+            "imagen": "https://example.com/img/ball.png",
+            "texto": "Ball",
+            "valor": "pelota"
+          },
+          {
+            "imagen": "https://example.com/img/icecream.png",
+            "texto": "Ice Cream",
+            "valor": "helado"
+          },
+          {
+            "imagen": "https://example.com/img/dog.png",
+            "texto": "Dog",
+            "valor": "perro"
+          }
+        ]
+    },
+    {
+        "tipo": "drag_drop",
+        "texto": "Ordena las siguientes letras: D, E, F.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Buen trabajo! Así va el orden correcto del abecedario.",
+          "incorrecto": "Revisa el orden del alfabeto en inglés."
+        },
+        "respuestaCorrecta": ["D", "E", "F"],
+        "dragItems": [
+          { "id": "1", "label": "F", "target": 2 },
+          { "id": "2", "label": "E", "target": 1 },
+          { "id": "3", "label": "D", "target": 0 }
+        ]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Escribe la letra que se pronuncia 'yi' en inglés.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! La letra G se pronuncia 'yi'.",
+          "incorrecto": "Incorrecto. Escucha cómo se pronuncia la letra G en inglés."
+        },
+        "respuestaCorrecta": "G"
+    }                    
+]

@@ -1,0 +1,103 @@
+[
+    {
+        "tipo": "multiple_choice",
+        "texto": "¿Cuál es el pronombre correcto para 'María y yo'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! 'María y yo' se traduce como 'we'.",
+          "incorrecto": "Revisa la conjugación. 'María y yo' somos 'nosotros'."
+        },
+        "respuestaCorrecta": "We",
+        "opciones": ["They", "We", "You", "She"]
+    },
+    {
+        "tipo": "drag_drop",
+        "texto": "Arrastra cada pronombre personal a su significado en español.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Perfecto! Conoces los pronombres básicos.",
+          "incorrecto": "Revisa bien cada uno. ¡Tú puedes!"
+        },
+        "respuestaCorrecta": [
+          { "en": "I", "es": "Yo" },
+          { "en": "You", "es": "Tú" },
+          { "en": "He", "es": "Él" },
+          { "en": "She", "es": "Ella" }
+        ],
+        "dragItems": [
+          { "id": "1", "label": "I", "target": "Yo" },
+          { "id": "2", "label": "You", "target": "Tú" },
+          { "id": "3", "label": "He", "target": "Él" },
+          { "id": "4", "label": "She", "target": "Ella" }
+        ]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce: 'Ellos son mis amigos'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Genial! 'They' se usa para referirse a varias personas.",
+          "incorrecto": "Casi. Pero no, la respuesta es They are my friends"
+        },
+        "respuestaCorrecta": ["They are my friends", "they are my frinds", "They're my friends", 
+                            "they're my friends"]
+    },    
+    {
+        "tipo": "voz",
+        "texto": "Escucha y repite el video",
+        "eVideo": "https://example.com/audio/she.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "",
+          "incorrecto": ""
+        },
+        "respuestaCorrecta": "She is my best friend"
+    },
+    {
+        "tipo": "multiple_choice_imagen",
+        "texto": "¿Qué imagen representa el pronombre 'They'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! 'They' se usa para grupos.",
+          "incorrecto": "Recuerda que 'They' se refiere a varias personas o cosas."
+        },
+        "respuestaCorrecta": "grupo",
+        "opciones": [
+          {
+            "imagen": "https://example.com/img/girl.png",
+            "texto": "She",
+            "valor": "niña"
+          },
+          {
+            "imagen": "https://example.com/img/boy.png",
+            "texto": "He",
+            "valor": "niño"
+          },
+          {
+            "imagen": "https://example.com/img/group.png",
+            "texto": "They",
+            "valor": "grupo"
+          },
+          {
+            "imagen": "https://example.com/img/me.png",
+            "texto": "I",
+            "valor": "yo"
+          }
+        ]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce: 'Tú eres estudiante'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Muy bien! Usaste 'You' correctamente.",
+          "incorrecto": "Casi. 'Tú' en inglés es 'You'."
+        },
+        "respuestaCorrecta": ["You are a student", "you are a student", "You're a student", "you're a student"]
+    }                     
+]

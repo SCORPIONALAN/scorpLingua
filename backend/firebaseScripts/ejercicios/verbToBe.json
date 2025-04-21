@@ -1,0 +1,100 @@
+[
+    {
+        "tipo": "multiple_choice",
+        "texto": "Selecciona la forma correcta del verbo 'to be' para: 'He ___ a teacher'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Exacto! 'He' va con 'is'.",
+          "incorrecto": "Recuerda que con 'He', 'She' e 'It' usamos 'is'."
+        },
+        "respuestaCorrecta": "is",
+        "opciones": ["are", "am", "is", "be"]
+    },
+    {
+        "tipo": "drag_drop",
+        "texto": "Completa las frases arrastrando la forma correcta del verbo 'to be'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Bien hecho! Todas las formas están bien usadas.",
+          "incorrecto": "Verifica con qué pronombres se usa cada forma del verbo."
+        },
+        "respuestaCorrecta": [
+          { "enunciado": "I ___ happy", "verbo": "am" },
+          { "enunciado": "They ___ students", "verbo": "are" },
+          { "enunciado": "She ___ a doctor", "verbo": "is" }
+        ],
+        "dragItems": [
+          { "id": "1", "label": "am", "target": "I ___ happy" },
+          { "id": "2", "label": "is", "target": "She ___ a doctor" },
+          { "id": "3", "label": "are", "target": "They ___ students" }
+        ]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce: 'Ellos son ingenieros'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Perfecto! 'They are engineers'.",
+          "incorrecto": "Revisa cómo se dice 'son' con el verbo 'to be' en plural."
+        },
+        "respuestaCorrecta": ["They are engineers", "They're engineers", "they are engineers", "they're engineers"]
+    },
+    {
+        "tipo": "voz",
+        "texto": "Escucha y repite la oración que usa el verbo 'to be'.",
+        "eVideo": "https://example.com/audio/she_is_happy.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "",
+          "incorrecto": ""
+        },
+        "respuestaCorrecta": "She is happy"
+    },      
+    {
+        "tipo": "multiple_choice_imagen",
+        "texto": "¿Cuál imagen representa la oración: 'I am a student'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Sí! Esa imagen representa a un estudiante.",
+          "incorrecto": "Recuerda que 'student' es estudiante."
+        },
+        "respuestaCorrecta": "estudiante",
+        "opciones": [
+          {
+            "imagen": "https://example.com/img/doctor.png",
+            "texto": "Doctor",
+            "valor": "doctor"
+          },
+          {
+            "imagen": "https://example.com/img/student.png",
+            "texto": "Student",
+            "valor": "estudiante"
+          },
+          {
+            "imagen": "https://example.com/img/teacher.png",
+            "texto": "Teacher",
+            "valor": "maestro"
+          },
+          {
+            "imagen": "https://example.com/img/police.png",
+            "texto": "Police Officer",
+            "valor": "policía"
+          }
+        ]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce: 'Tú eres mi mejor amigo'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! Usaste 'You are' muy bien.",
+          "incorrecto": "Recuerda que 'Tú eres' en inglés es 'You are'."
+        },
+        "respuestaCorrecta": ["You are my best friend", "You're my best friend", "you are my best friend", "you're my best friend"]
+    }      
+]

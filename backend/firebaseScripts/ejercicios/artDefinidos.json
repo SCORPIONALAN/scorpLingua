@@ -1,0 +1,58 @@
+[
+    {
+        "tipo": "multiple_choice",
+        "texto": "¿Cuál es el artículo definido en inglés?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Exacto! 'The' es el único artículo definido.",
+          "incorrecto": "Recuerda: 'the' es el artículo definido en inglés, los demás son indefinidos o no son artículos."
+        },
+        "respuestaCorrecta": "the",
+        "opciones": ["a", "an", "the", "some"]
+    },
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce: 'La manzana está en la mesa'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Perfecto! Usaste 'the' correctamente dos veces.",
+          "incorrecto": "Revisa cómo se dice 'la' en inglés cuando es específica: se usa 'the'."
+        },
+        "respuestaCorrecta": ["The apple is on the table", "the apple is on the table"]
+    },
+    {
+        "tipo": "multiple_choice_imagen",
+        "texto": "¿Cuál imagen representa mejor el uso del artículo definido?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Muy bien! El artículo definido se usa cuando se habla de algo específico.",
+          "incorrecto": "Piensa cuál de los objetos parece específico y único."
+        },
+        "respuestaCorrecta": "sol",
+        "opciones": [
+          {
+            "imagen": "https://example.com/img/sun.png",
+            "texto": "The sun",
+            "valor": "sol"
+          },
+          {
+            "imagen": "https://example.com/img/some_books.png",
+            "texto": "Some books",
+            "valor": "algunos libros"
+          },
+          {
+            "imagen": "https://example.com/img/an_apple.png",
+            "texto": "An apple",
+            "valor": "una manzana"
+          },
+          {
+            "imagen": "https://example.com/img/a_car.png",
+            "texto": "A car",
+            "valor": "un carro"
+          }
+        ]
+    }             
+]

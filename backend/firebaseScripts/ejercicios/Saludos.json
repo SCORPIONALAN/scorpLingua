@@ -1,0 +1,99 @@
+[
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce al inglés: 'Hola, ¿cómo estás?'",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Muy bien! 'Hello, how are you?' es una forma común de saludar.",
+          "incorrecto": "Casi. Recuerda que 'Hola' es 'Hello' y '¿cómo estás?' es 'how are you?'"
+        },
+        "respuestaCorrecta": ["hello, how are you?", "hello how are you", "hello how are you?", "hello, how are you", 
+                                "hi, how are you?", "hi how are you", "hi how are you?", "hi, how are you"]
+    },
+    {
+        "tipo": "voz",
+        "texto": "Escucha y repite el saludo que oyes.",
+        "eVideo": "https://example.com/audio/hello-good-morning.mp4",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "",
+          "incorrecto": ""
+        },
+        "respuestaCorrecta": "Good morning"
+    },
+    {
+        "tipo": "multiple_choice",
+        "texto": "¿Cuál es la traducción correcta de 'Good evening'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! 'Good evening' significa 'buenas noches' (al llegar).",
+          "incorrecto": "No. 'Good evening' no es para despedirse, sino para saludar en la noche."
+        },
+        "respuestaCorrecta": "Buenas noches",
+        "opciones": ["Buenos días", "Buenas noches", "Hola", "Buenas tardes"]
+    },
+    {
+        "tipo": "drag_drop",
+        "texto": "Ordena las palabras para formar el saludo: 'Hello, nice to meet you'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Excelente! Esa es una manera formal y amable de saludar.",
+          "incorrecto": "Casi. Piensa en el orden lógico del saludo."
+        },
+        "respuestaCorrecta": ["Hello,", "nice", "to", "meet", "you"],
+        "dragItems": [
+          { "id": "1", "label": "to", "target": 2 },
+          { "id": "2", "label": "you", "target": 4 },
+          { "id": "3", "label": "Hello,", "target": 0 },
+          { "id": "4", "label": "meet", "target": 3 },
+          { "id": "5", "label": "nice", "target": 1 }
+        ]
+    },
+    {
+        "tipo": "multiple_choice_imagen",
+        "texto": "¿Qué imagen representa el saludo 'Good night'?",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Muy bien! Esa imagen representa 'buenas noches' al irse a dormir.",
+          "incorrecto": "No exactamente. 'Good night' se usa para despedirse por la noche."
+        },
+        "respuestaCorrecta": "noche",
+        "opciones": [
+          {
+            "imagen": "https://example.com/img/sunrise.png",
+            "texto": "Sunrise",
+            "valor": "amanecer"
+          },
+          {
+            "imagen": "https://example.com/img/day.png",
+            "texto": "Day",
+            "valor": "día"
+          },
+          {
+            "imagen": "https://example.com/img/night.png",
+            "texto": "Night",
+            "valor": "noche"
+          },
+          {
+            "imagen": "https://example.com/img/afternoon.png",
+            "texto": "Afternoon",
+            "valor": "tarde"
+          }
+        ]
+    },          
+    {
+        "tipo": "traduccion",
+        "texto": "Traduce al inglés: 'Buenas tardes, señor'.",
+        "eVideo": "",
+        "eImagen": "",
+        "feedbacke": {
+          "correcto": "¡Correcto! Es un saludo formal muy común.",
+          "incorrecto": "Revisa la forma formal de decir 'señor' en inglés."
+        },
+        "respuestaCorrecta": ["Good afternoon, sir", "good afternoon, sir", "Good afternoon sir", "good afternoon sir"]
+    }      
+]

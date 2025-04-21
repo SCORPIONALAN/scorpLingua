@@ -53,7 +53,7 @@ scorpLingua busca ser una herramienta moderna, flexible y escalable para el apre
 
 - [Día 1 - Backend / Automatización de scripts para la base de datos 🔥](bitacoras/dia1.md)
 - [Día 1 - Backend / Inicio del servidor en NodeJS y algunas rutas ➡️](bitacoras/dia1-avance.md)
-
+- [Día 2 - Frontend / Creacion del proyecto de Flutter🐦](bitacoras/dia2.md)
 ---
 
 ## 🎯 Visión a Futuro

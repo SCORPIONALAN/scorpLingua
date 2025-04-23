@@ -43,7 +43,7 @@ scorpLingua busca ser una herramienta moderna, flexible y escalable para el apre
 - ✅ Lecciones con texto, imágenes y videos
 - 🔄 Correcciones automáticas y modales de feedback
 - 🔄 Chat con profesores vía WebSocket
-- 🔄 Chat con IA para resolver dudas o practicar conversación
+- ✅ Chat con IA para resolver dudas o practicar conversación
 - 🔄 Sistema de progreso por usuario
 - 🔄 Notificaciones de avance y recordatorios
 
@@ -54,6 +54,8 @@ scorpLingua busca ser una herramienta moderna, flexible y escalable para el apre
 - [Día 1 - Backend / Automatización de scripts para la base de datos 🔥](bitacoras/dia1.md)
 - [Día 1 - Backend / Inicio del servidor en NodeJS y algunas rutas ➡️](bitacoras/dia1-avance.md)
 - [Día 2 - Frontend / Creacion del proyecto de Flutter🐦](bitacoras/dia2.md)
+- [Día 3 - Backend / Creacion de primeros controladores 🎮](bitacoras/dia3.md)
+
 ---
 
 ## 🎯 Visión a Futuro

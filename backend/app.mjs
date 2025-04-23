@@ -10,6 +10,7 @@ import routerMensajes from './routes/mensajes.route.mjs';
 import routerChatIA from './routes/chatIA.route.mjs';
 import routerEstadisticas from './routes/estadisticas.route.mjs';
 
+
 /*                  CONFIGURACIONES Y CONSTANTES DE NUESTRO BACKEND              */
 dotenv.config();
 const app = express();
@@ -24,10 +25,10 @@ app.use(express.urlencoded({limit: '100mb', extended:true}))
 app.use(cookieParser());
 
 /*                  RUTAS                           */
-app.use('/api/users', routerUsers);
+// app.use('/api/users', routerUsers);
 app.use('/api/teoria', routerTeoria);
 app.use('/api/ejercicio', routerEjercicio);
-app.use('/api/mensajes', routerMensajes);
+// app.use('/api/mensajes', routerMensajes);
 app.use('/api/chatIA', routerChatIA);
-app.use('/api/estadisticas', routerEstadisticas);
+// app.use('/api/estadisticas', routerEstadisticas);
 app.listen(PORT)

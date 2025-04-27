@@ -25,7 +25,7 @@ app.use(express.urlencoded({limit: '100mb', extended:true}))
 app.use(cookieParser());
 
 /*                  RUTAS                           */
-// app.use('/api/users', routerUsers);
+app.use('/api/users', routerUsers);
 app.use('/api/teoria', routerTeoria);
 app.use('/api/ejercicio', routerEjercicio);
 // app.use('/api/mensajes', routerMensajes);

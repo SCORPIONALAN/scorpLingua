@@ -70,7 +70,7 @@ export const sendMessage = async (req, res) => {
 // Controlador para análisis de audio
 export const sendAudio = async (req, res) => {
   try {
-    const audioPath = path.join(__dirname, 'media', 'Recording (3).m4a');
+    const audioPath = path.join(__dirname, 'media', 'Recording (8).m4a');
 
     if (!fs.existsSync(audioPath)) {
       return res.status(400).json({ error: 'Archivo de audio no encontrado.' });

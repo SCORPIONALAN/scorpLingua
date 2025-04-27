@@ -1,5 +1,5 @@
 import express from "express";
-import rutaProtegida from '../middleware/auth.middleware.mjs';
+import { verifyToken} from '../middleware/auth.middleware.mjs';
 import { MiddlewarePrompt } from "../middleware/reqOpenIA.middleware.mjs";
 import { sendAudio, sendMessage } from "../controllers/consulta-texto.controller.mjs";
 const router = express.Router();

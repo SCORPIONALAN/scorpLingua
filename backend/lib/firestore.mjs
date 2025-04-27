@@ -1,22 +1,18 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import admin from 'firebase-admin';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId
-};
+// Inicializa firebase-admin solo si no está ya inicializado
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: process.env.storageBucket,
+  });
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);// Para mi base de datos no relacional
-const storage = getStorage(app); // Para los buckets
+const db = admin.firestore();  // Base de datos Firestore
+const bucket = admin.storage().bucket(); // Bucket de Storage
 
-export { db, storage };
+export { admin, db, bucket };

@@ -1,28 +1,34 @@
-import jwt from 'jsonwebtoken';
+// middlewares/auth.middleware.mjs
+import { admin } from '../lib/firestore.mjs';
 
-const verifyToken = (req, res, next) => {
-  // Leer el header de autorización
-  const authHeader = req.headers['authorization'];
-
-  // Verificar que existe
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Token no proporcionado o mal formado' });
-  }
-
-  const token = authHeader.split(' ')[1];
-
+export const verifyToken = async (req, res, next) => {
   try {
-    // Verificar el token con tu clave secreta
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Adjuntar el usuario decodificado al request
-    req.user = decoded;
+    // Verificar si hay un token en la cabecera Authorization
+    const authHeader = req.headers.authorization;
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Acceso denegado. Token no proporcionado o formato incorrecto' });
+    }
 
-    // Continuar al siguiente middleware o controlador
+    // Obtener el token sin el prefijo "Bearer "
+    const token = authHeader.split(' ')[1];
+    console.log(token);
+    // Verificar el token con Firebase Admin
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    
+    // Añadir el usuario al objeto de solicitud para uso posterior
+    req.user = {
+      userId: decodedToken.uid,
+      email: decodedToken.email,
+
+    };
+    
+    // Continuar con la siguiente función en la cadena de middleware
     next();
-  } catch (err) {
+  } catch (error) {
+    console.error('Error al verificar token:', error);
     return res.status(403).json({ message: 'Token inválido o expirado' });
   }
 };
 
-export default verifyToken;

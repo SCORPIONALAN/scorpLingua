@@ -1,5 +1,5 @@
 import express from "express";
-import rutaProtegida from '../middleware/auth.middleware.mjs';
+import { verifyToken} from '../middleware/auth.middleware.mjs';
 import { getEjercicio } from "../controllers/ejercicios.controller.mjs";
 const router = express.Router();
 router.get("/:id", getEjercicio);

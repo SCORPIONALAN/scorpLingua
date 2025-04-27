@@ -55,6 +55,7 @@ scorpLingua busca ser una herramienta moderna, flexible y escalable para el apre
 - [Día 1 - Backend / Inicio del servidor en NodeJS y algunas rutas ➡️](bitacoras/dia1-avance.md)
 - [Día 2 - Frontend / Creacion del proyecto de Flutter🐦](bitacoras/dia2.md)
 - [Día 3 - Backend / Creacion de primeros controladores 🎮](bitacoras/dia3.md)
+- [Día 4 - Backend / Enrutamiento y seguridad 🎮🔐](bitacoras/dia4.md)
 
 ---
 

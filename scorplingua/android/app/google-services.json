@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "872208755472",
+    "project_id": "scorplingua",
+    "storage_bucket": "scorplingua.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872208755472:android:c12d56e5d2711f62711395",
+        "android_client_info": {
+          "package_name": "com.example.scorplingua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872208755472-150nsi2p2fagk0fu1ka1lcb5f43ev0v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-KTqAKMjR6d9mZoFPR7ipruFHnBsQkAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872208755472-150nsi2p2fagk0fu1ka1lcb5f43ev0v5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "872208755472-v6iu30u4kvmmocf822v7b180bff7etab.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scorplingua"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import { admin } from '../lib/firestore.mjs';
 
 const __dirname = path.resolve();
 dotenv.config();
@@ -70,7 +71,7 @@ export const sendMessage = async (req, res) => {
 // Controlador para análisis de audio
 export const sendAudio = async (req, res) => {
   try {
-    const audioPath = path.join(__dirname, 'media', 'Recording (8).m4a');
+    const audioPath = path.join(__dirname, 'media', 'Recording (14).m4a');
 
     if (!fs.existsSync(audioPath)) {
       return res.status(400).json({ error: 'Archivo de audio no encontrado.' });
@@ -116,3 +117,73 @@ export const sendAudio = async (req, res) => {
     res.status(500).json({ error: "Error al procesar el audio" });
   }
 };
+
+export const createImage = async(req, res) => {
+  try {
+    const { sexo, userId } = req.body;
+    
+    if (!userId) {
+      return res.status(400).json({ message: "Se requiere el ID del usuario" });
+    }
+    console.log(userId);
+    const prompt = `
+      Eres un diseñador que va a ayudar a generar avatares bonitos y muy creativos para nuestros queridos estudiantes.
+      Caracteristicas:
+      - Estilo: requerimos de de un estilo animado muy divertido. Pero como toque personal inspira muy fuertemente los avatares sobre la cultura emo.
+      - Tamaño: 1024x1024px
+      - Fondo: colores oscuros como negro, morado, verde oscuro y colores que parezcan goticos
+      - Numero: solamente va a ser 1 avatar, no quiero que hagas 2 o mas. UNICA Y EXCLUSIVAMENTE 1
+      - Sexo del avatar: El usuario se identifica como ${(sexo === 'M')? 'Hombre': 'Mujer'} asi que por favor crea su avatar en base a su sexo identificado
+      - Imagenes: solamente 1 imagen
+    `;
+    
+    // Generar imagen con OpenAI
+    const respuesta = await openAI.images.generate({
+      model: "dall-e-3",
+      prompt,
+      size: "1024x1024",
+      quality: "standard",
+      style: "vivid"
+    });
+    
+    const imgUrl = respuesta.data[0].url;
+    console.log("Imagen generada:", imgUrl);
+    
+    // Descargar la imagen
+    const fetch = await import('node-fetch');
+    const response = await fetch.default(imgUrl);
+    const buffer = await response.buffer();
+    
+    // Subir a Firebase Storage
+    const bucket = admin.storage().bucket();
+    const filename = `userImages/${userId}.png`;
+    const file = bucket.file(filename);
+    
+    await file.save(buffer, {
+      metadata: {
+        contentType: 'image/png',
+      }
+    });
+    
+    // Generar URL pública para la imagen
+    const [url] = await file.getSignedUrl({
+      action: 'read',
+      expires: '03-01-2500' // URL con larga duración
+    });
+    
+    return res.status(201).json({
+      success: true,
+      message: "Avatar creado y guardado con éxito",
+      originalUrl: imgUrl,
+      firebaseUrl: url
+    });
+    
+  } catch (error) {
+    console.error("Error al crear o guardar la imagen:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error al procesar la solicitud",
+      error: error.message
+    });
+  }
+}

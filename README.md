@@ -56,6 +56,7 @@ scorpLingua busca ser una herramienta moderna, flexible y escalable para el apre
 - [Día 2 - Frontend / Creacion del proyecto de Flutter🐦](bitacoras/dia2.md)
 - [Día 3 - Backend / Creacion de primeros controladores 🎮](bitacoras/dia3.md)
 - [Día 4 - Backend / Enrutamiento y seguridad 🎮🔐](bitacoras/dia4.md)
+- [Día 5 - Frontend / Desarrollo de la parte de autenticación y orden 🐦🔥](bitacoras/dia5.md)
 
 ---
 

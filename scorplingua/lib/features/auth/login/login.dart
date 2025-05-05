@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scorplingua/core/config/backend.dart';
 import 'package:scorplingua/features/auth/forgot_password/forgot.dart';
 import 'package:scorplingua/features/auth/signup/signup.dart';
 
@@ -39,6 +40,11 @@ class _LoginState extends State<Login> {
         email: trimmedEmail,
         password: trimmedPassword,
       );
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String? idToken = await user.getIdToken();
+        await sendTokenToBackend(idToken!);
+      }
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Mensaje de error", e.message ?? e.code);
     } catch (e) {

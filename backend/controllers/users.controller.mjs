@@ -1,101 +1,109 @@
-import { admin, db } from '../lib/firestore.mjs';
-import { UserSchema } from '../models/user.models.mjs';
+import admin from "firebase-admin";
+import { db } from "../lib/firestore.mjs"; // tu configuración de firebase-admin
+import { getReceiverSocketId, io } from "../lib/socket.mjs";
 
 export const signup = async (req, res) => {
-  const data = req.body;
+  const { fullName, email, password } = req.body;
+
+  if (!fullName || !email || !password) {
+    return res.status(400).json({ message: "Favor de llenar todos los campos" });
+  }
+
+  if (password.length < 6) {
+    return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
+  }
 
   try {
-    // Validación por parte del Schema ZOD
-    const validated = UserSchema.parse(data);
-    console.log(validated);
+    // Verificar si el usuario ya existe por email
+    const userRecord = await admin.auth().getUserByEmail(email).catch(() => null);
+    if (userRecord) {
+      return res.status(400).json({ message: "El usuario ya existe" });
+    }
 
-    // Creación de usuario por parte de Firebase Auth
-    const userRecord = await admin.auth().createUser({
-      email: validated.email,
-      password: validated.password, // Firebase Auth la hasheará
-      displayName: validated.username || '',
+    // Crear el usuario en Firebase Auth
+    const newUser = await admin.auth().createUser({
+      email,
+      password,
+      displayName: fullName,
     });
 
-    // Generar un token para el usuario recién creado
-    const firebaseToken = await admin.auth().createCustomToken(userRecord.uid);
-
-    // Guardar información adicional del usuario en Firestore
-    const userRef = db.collection('users');
-    const userToSave = {
-      ...validated,
-      userId: userRecord.uid,
-      createdAt: admin.firestore.FieldValue.serverTimestamp()
+    // Guardar datos adicionales en Firestore
+    const userData = {
+      fullName,
+      email,
+      profilePic: "",
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
-    
-    // Eliminamos campos sensibles antes de guardar
-    delete userToSave.password;
-    
-    const docRef = await userRef.add(userToSave);
+
+    await db.collection("users").doc(newUser.uid).set(userData);
 
     res.status(201).json({
-      message: "Usuario correctamente registrado",
-      token: firebaseToken, // Incluimos el token
-      userId: docRef.id,
-      user: {
-        email: validated.email,
-        name: validated.name || validated.fullName || '',
-        uid: userRecord.uid
-      },
+      uid: newUser.uid,
+      fullName,
+      email,
+      profilePic: "",
+      message: "Usuario creado correctamente",
     });
   } catch (error) {
-    if (error.name === "ZodError") {
-      return res.status(400).json({ message: "Datos inválidos", errors: error.errors });
-    }
-    console.error("Error al crear usuario:", error);
-    res.status(500).json({ 
-      message: "Error del servidor",
-      error: error.message 
-    });
+    console.error("Error al registrar usuario:", error.message);
+    res.status(500).json({ message: "Error del servidor al crear usuario" });
   }
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-  
+  // Firebase maneja login desde el cliente (con Firebase Auth)
+  // Aquí podrías validar el token del cliente si quieres restringir acceso (opcional)
+  return res.status(400).json({ message: "El login se maneja desde el cliente con Firebase Auth" });
+};
+
+export const logout = (req, res) => {
+  // Logout se maneja en el cliente eliminando el token
+  res.status(200).json({ message: "Sesión cerrada exitosamente desde el cliente" });
+};
+
+export const updateProfile = async (req, res) => {
   try {
-    // Verificamos que el usuario exista en Firebase Auth
-    const userRecord = await admin.auth().getUserByEmail(email);
-    
-    // Generar un token personalizado para el usuario
-    const firebaseToken = await admin.auth().createCustomToken(userRecord.uid);
-    
-    // Obtener datos adicionales del usuario desde Firestore
-    const userSnapshot = await db.collection('users')
-      .where('userId', '==', userRecord.uid)
-      .get();
-    
-    let userData = null;
-    if (!userSnapshot.empty) {
-      userData = userSnapshot.docs[0].data();
-      // Asegurarnos de no enviar información sensible
-      if (userData.password) delete userData.password;
+    const { profilePic } = req.body;
+    const userId = req.user.uid; // req.user debe estar validado por middleware
+
+    if (!profilePic) {
+      return res.status(400).json({ message: "La foto de perfil es obligatoria" });
     }
 
-    res.status(200).json({
-      message: "Token generado exitosamente",
-      token: firebaseToken,
-      user: {
-        email: userRecord.email,
-        uid: userRecord.uid,
-        ...userData
-      },
+    // Subir imagen a Cloudinary (si aún lo usas)
+    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+
+    // Actualizar en Firestore
+    await db.collection("users").doc(userId).update({
+      profilePic: uploadResponse.secure_url,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+
+    const updatedUser = (await db.collection("users").doc(userId).get()).data();
+
+    res.status(200).json(updatedUser);
+
+    // Emitir evento con socket.io
+    io.emit("ImageChange", {
+      userId,
+      profilePic: updatedUser.profilePic,
     });
   } catch (error) {
-    console.error("Error al generar token:", error);
-    res.status(401).json({ 
-      message: "Credenciales inválidas o usuario no encontrado",
-      error: error.message 
-    });
+    console.error("Error al actualizar perfil:", error.message);
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
-export const logout = async (req, res) => {
-  // Firebase Auth maneja los tokens en el cliente
-  // En el backend solo confirmamos la acción
-  res.status(200).json({ message: "Sesión cerrada exitosamente" });
+export const checkAuth = async (req, res) => {
+  try {
+    const uid = req.user.uid; // ya autenticado por Firebase
+    const userSnap = await db.collection("users").doc(uid).get();
+    if (!userSnap.exists) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    res.status(200).json(userSnap.data());
+  } catch (error) {
+    console.error("Error en checkAuth:", error.message);
+    res.status(500).json({ message: "Error del servidor" });
+  }
 };

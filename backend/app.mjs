@@ -9,11 +9,11 @@ import routerEjercicio from './routes/ejercicio.route.mjs';
 import routerMensajes from './routes/mensajes.route.mjs';
 import routerChatIA from './routes/chatIA.route.mjs';
 import routerEstadisticas from './routes/estadisticas.route.mjs';
+import {app, server} from './lib/socket.mjs'
 
 
 /*                  CONFIGURACIONES Y CONSTANTES DE NUESTRO BACKEND              */
 dotenv.config();
-const app = express();
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
@@ -31,4 +31,6 @@ app.use('/api/ejercicio', routerEjercicio);
 // app.use('/api/mensajes', routerMensajes);
 app.use('/api/chatIA', routerChatIA);
 // app.use('/api/estadisticas', routerEstadisticas);
-app.listen(PORT)
+server.listen(PORT, '0.0.0.0', ()=>{
+    console.log(`Servidor corriendo en http://0.0.0.0:${PORT}`);
+})
